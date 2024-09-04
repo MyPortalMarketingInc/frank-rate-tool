@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <title>Rate Tool</title>
+    <title>Iframe Generator</title>
     <link rel="stylesheet" href="/css/home.css">
 </head>
-
 <body>
-    <div class="header-wrapper">
-        <h1 class="header">Find Your Best Mortgage Rate</h1>
+    <div class="iframe-generator">
+        <h1>Iframe Generator</h1>
+        <form id="iframeGenerator">
+            
+            <label for="titleColor">Title Text Color:</label>
+            <input type="color" id="titleColor" value="#2465f2">
+
+            <label for="inputBgColor">Input Background Color:</label>
+            <input type="color" id="inputBgColor" value="#fac566">
+
+            <label for="inputLabelTextColor">Input Label Text Color:</label>
+            <input type="color" id="inputLabelTextColor" value="#000">
+    
+            <label for="btnBgColor">Button Background Color:</label>
+            <input type="color" id="btnBgColor" value="#fac566">
+    
+            <label for="BtnTextColor">Button Text Color:</label>
+            <input type="color" id="BtnTextColor" value="#202859">
+
+            <label for="rateTextColor">Rates Text Color:</label>
+            <input type="color" id="rateTextColor" value="#202859">
+    
+            <button type="button" onclick="generateIframeCode()">Generate Iframe Code</button>
+        </form>
+    
+        <label for="iframeCode">Generated Iframe Code:</label>
+        <textarea id="iframeCode" readonly></textarea>
     </div>
+
+    <!-- Rate Tool -->
+    <div class="header-wrapper">
+        <h1 class="header" id="text">Find Your Best Mortgage Rate</h1>
+    </div>
+
     <section id="tableview" overflow="visible"
         class="LayoutRow__Container-sc-ped3g2-0 jevIpP rh-pt-0 rh-pb-0 rh-layout-default rh-max-width-override rh-layout-row box-shadow-none"
         data-toc-title="Best Canada mortgage rates table" data-rh-block="true" style="grid-row: 4;">
@@ -25,7 +54,7 @@
                         class="FilteredAsyncContainer__Container-sc-qqj0dt-0 eHbDsC ProductTableMortgageFilteredAsyncContainer__StyledProductTableMortgageFilteredAsyncContainer-sc-1ny7qa5-0 fQzIHw rh-border-radius-4px rh-b-1px-solid-stone">
                         <fieldset class="rh-p-0 rh-border-width-0 filters-container rh-mx-0">
                             <div
-                                class="AccordionFilters__Container-sc-p7k4us-0 IZujl rh-p-1 filters rh-bb-1px-solid-stone">
+                                class="AccordionFilters__Container-sc-p7k4us-0 IZujl rh-p-1 filters rh-bb-1px-solid-stone" id="BgInput">
                                 <div class="AccordionBase__Container-sc-uhoj8-0 nAuam">
                                     <div class="flex-container rh-display-flex rh-flex-nowrap">
                                         <div class="flex-left-space grid-container rh-display-grid">
@@ -530,6 +559,63 @@
     </div>
     
     <script src="/js/home.js"></script>
-</body>
+    <!-- End Rate Tool -->
 
+    <script>
+        const colorPicker = document.getElementById('titleColor');
+        const text = document.getElementById('text');
+
+        colorPicker.addEventListener('input', (event) => {
+            $('#text').css('color', event.target.value)
+        });
+
+        const bgInputColor = document.getElementById('inputBgColor');
+        const BgInput = document.getElementById('BgInput');
+
+        bgInputColor.addEventListener('input', (event) => {
+            $('#BgInput').css('background', event.target.value)
+        })
+
+        const inputLabelTextColor = document.getElementById('inputLabelTextColor');
+
+        inputLabelTextColor.addEventListener('input', (event) => {
+            $('.rh-text-m').css('color', event.target.value)
+        })
+
+        const btnBgColor = document.getElementById('btnBgColor');
+
+        btnBgColor.addEventListener('input', (event) => {
+            $('.gGua-Dl').css('background', event.target.value);
+        })
+
+        const BtnTextColor = document.getElementById('BtnTextColor');
+
+        BtnTextColor.addEventListener('input', (event) => {
+            $('.gGua-Dl').css('color', event.target.value);
+        })
+
+        const rateTextColor = document.getElementById('rateTextColor');
+        rateTextColor.addEventListener('input', (event) => {
+            $('.rh-fg-blueberry-dark').css('color', event.target.value);
+        })
+        
+        function generateIframeCode() {
+            // Get user input values
+            const url = 'https://frank-rate-tool.onrender.com/rate-tool';
+            const btnBgColor = document.getElementById('btnBgColor').value;
+            const textColor = document.getElementById('textColor').value;
+            const inputBgColor = document.getElementById('inputBgColor').value;
+
+            $('.header').css('color', $('.titleColor').val())
+
+            console.log(btnBgColor, textColor, inputBgColor)
+
+            // Create the iframe HTML code with custom attributes
+            const iframeCode = `<iframe src="${url}" width="100%" height="100%" data-btn-bg-color="${btnBgColor}" data-text-color="${textColor}" frameborder="0" allowfullscreen></iframe>`;
+
+            // Display the generated iframe code in the textarea
+            document.getElementById('iframeCode').value = iframeCode;
+        }
+    </script>
+</body>
 </html>

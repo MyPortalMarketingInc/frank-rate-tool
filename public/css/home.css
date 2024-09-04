@@ -1,9 +1,23 @@
-/*! CSS Used from: https://www.ratehub.ca/_next/static/css/805bf82edf961e6d.css */
-/* * #tableview {
-	 max-width: 924px;
+body,html{
+	font-family: "DM Sans", "DM Sans Fallback";
+ }
+ .header-wrapper {
+    text-align: center;
+    color: #2465f2;
 }
- */
- 
+h1.header {
+    font-family: "DM Sans", "DM Sans Fallback";
+    font-size: 50px;
+}
+.consultation-btn{
+	width: 220px !important;
+    height: 60px;
+}
+.book-consultation{
+	width: 100%;
+	margin-top: 25px;
+	text-align: center;
+}
  p.rteBlock {
     font-size: 14px;
 }
