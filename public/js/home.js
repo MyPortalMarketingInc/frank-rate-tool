@@ -1394,6 +1394,8 @@ $(document).ready(async ()=> {
                     'color': res.ratings.color
                 });
 
+                $('.rh-text-m').css('color', res.inputBody.color)
+
             }).catch(er => console.log(er))
         }
     }
