@@ -8,35 +8,82 @@
 
     <title>Iframe Generator</title>
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/generator.css">
 </head>
 <body>
     <div class="iframe-generator">
         <h1>Iframe Generator</h1>
-        <form id="iframeGenerator">
-            
-            <label for="titleColor">Title Text Color:</label>
-            <input type="color" id="titleColor" value="#2465f2">
 
-            <label for="inputBgColor">Input Background Color:</label>
-            <input type="color" id="inputBgColor" value="#fac566">
+        <div class="generate-button">
+            <button type="button" class="generateBtn" onclick="generateIframeCode()">Generate Iframe Code</button>
+        </div>
 
-            <label for="inputLabelTextColor">Input Label Text Color:</label>
-            <input type="color" id="inputLabelTextColor" value="#000">
-    
-            <label for="btnBgColor">Button Background Color:</label>
-            <input type="color" id="btnBgColor" value="#fac566">
-    
-            <label for="BtnTextColor">Button Text Color:</label>
-            <input type="color" id="BtnTextColor" value="#202859">
+        <div class="container">
+            <textarea id="iframeCode" readonly></textarea>
+            <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+        </div>
 
-            <label for="rateTextColor">Rates Text Color:</label>
-            <input type="color" id="rateTextColor" value="#202859">
-    
-            <button type="button" onclick="generateIframeCode()">Generate Iframe Code</button>
-        </form>
-    
-        <label for="iframeCode">Generated Iframe Code:</label>
-        <textarea id="iframeCode" readonly></textarea>
+        <div class="iframe-result">
+            <label for="iframeCode">Generated Iframe Code:</label>
+            <textarea id="iframeCode" readonly></textarea>
+        </div>
+
+        <div class="header-config display-grid">
+            <div class="group">
+                <label for="titleColor">Title Text Color:</label>
+                <input type="color" id="titleColor" value="#2465f2">
+            </div>
+            <div class="group">
+                <label for="titleFontSize">Title Font Size in (PX):</label>
+                <input type="number" id="titleFontSize" value="50">
+            </div>
+        </div>
+
+        <div class="input-field-config display-grid">
+            <div class="group">
+                <label for="inputBgColor">Background Color:</label>
+                <input type="color" id="inputBgColor" value="#fac566">
+            </div>
+            <div class="group">
+                <label for="inputLabelTextColor">Input Label Text Color:</label>
+                <input type="color" id="inputLabelTextColor" value="#000">
+            </div>
+            <div class="group">
+                <label for="labelFontSize">Label Font Size in (PX):</label>
+                <input type="number" id="labelFontSize" value="12">
+            </div>
+            <div class="group">
+                <label for="borderRadiusInputBg">Border Radius (px):</label>
+                <input type="range" min="1" max="50" value="7" id="borderRadiusInputBg">
+                <input type="text" id="rangeValue" value="7px" readonly>
+            </div>
+        </div>
+        
+        <div class="table-heading-config display-grid">
+            <div class="goup">
+                <label for="tableHeadingColor">Text Color:</label>
+                <input type="color" id="tableHeadingColor" value="#1d1d1f">
+            </div>
+            <div class="group">
+                <label for="tableHeadingFontSize">Font Size in (PX):</label>
+                <input type="number" id="tableHeadingFontSize" value="14">
+            </div>
+        </div>
+
+        <div class="table-body-config display-grid">
+            <div class="group">
+                <label for="btnBgColor">Button Background Color:</label>
+                <input type="color" id="btnBgColor" value="#fac566">
+            </div>
+            <div class="group">
+                <label for="BtnTextColor">Button Text Color:</label>
+                <input type="color" id="BtnTextColor" value="#202859">
+            </div>
+            <div class="group">
+                <label for="rateTextColor">Rates Text Color:</label>
+                <input type="color" id="rateTextColor" value="#202859">
+            </div>
+        </div>
     </div>
 
     <!-- Rate Tool -->
@@ -560,62 +607,6 @@
     
     <script src="/js/home.js"></script>
     <!-- End Rate Tool -->
-
-    <script>
-        const colorPicker = document.getElementById('titleColor');
-        const text = document.getElementById('text');
-
-        colorPicker.addEventListener('input', (event) => {
-            $('#text').css('color', event.target.value)
-        });
-
-        const bgInputColor = document.getElementById('inputBgColor');
-        const BgInput = document.getElementById('BgInput');
-
-        bgInputColor.addEventListener('input', (event) => {
-            $('#BgInput').css('background', event.target.value)
-        })
-
-        const inputLabelTextColor = document.getElementById('inputLabelTextColor');
-
-        inputLabelTextColor.addEventListener('input', (event) => {
-            $('.rh-text-m').css('color', event.target.value)
-        })
-
-        const btnBgColor = document.getElementById('btnBgColor');
-
-        btnBgColor.addEventListener('input', (event) => {
-            $('.gGua-Dl').css('background', event.target.value);
-        })
-
-        const BtnTextColor = document.getElementById('BtnTextColor');
-
-        BtnTextColor.addEventListener('input', (event) => {
-            $('.gGua-Dl').css('color', event.target.value);
-        })
-
-        const rateTextColor = document.getElementById('rateTextColor');
-        rateTextColor.addEventListener('input', (event) => {
-            $('.rh-fg-blueberry-dark').css('color', event.target.value);
-        })
-        
-        function generateIframeCode() {
-            // Get user input values
-            const url = 'https://frank-rate-tool.onrender.com/rate-tool';
-            const btnBgColor = document.getElementById('btnBgColor').value;
-            const textColor = document.getElementById('textColor').value;
-            const inputBgColor = document.getElementById('inputBgColor').value;
-
-            $('.header').css('color', $('.titleColor').val())
-
-            console.log(btnBgColor, textColor, inputBgColor)
-
-            // Create the iframe HTML code with custom attributes
-            const iframeCode = `<iframe src="${url}" width="100%" height="100%" data-btn-bg-color="${btnBgColor}" data-text-color="${textColor}" frameborder="0" allowfullscreen></iframe>`;
-
-            // Display the generated iframe code in the textarea
-            document.getElementById('iframeCode').value = iframeCode;
-        }
-    </script>
+    <script src="/js/generator.js"></script>
 </body>
 </html>

@@ -1257,7 +1257,7 @@ $(document).ready(async ()=> {
     /**
      * @description check the URL parameters
      */
-    function getURLParameters() {
+    async function getURLParameters() {
         let search = new URLSearchParams(window.location.search);
         let purpose = 'owner-occupied';
         let province = 'ALL';
@@ -1356,6 +1356,45 @@ $(document).ready(async ()=> {
             $('#scenario-item-2').click()
         } else {
             callTheApi();
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const IframeToken = urlParams.get('token');
+
+        if (IframeToken) {
+            await fetch(`/api/iframe-css`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'token': IframeToken
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+
+                $('.header-wrapper .header').css({
+                    'color': res.headerText.color,
+                    'font-size': res.headerText['font-size']
+                });
+
+                $('.IZujl').css('background-color', res.inputBody['background-color'])
+                $('.hsBczI > .select-combobox > .select-open-menu-button > .icon-chevron').css('stroke', res.inputBody['background-color']);
+
+                $('th.table-header-cell.rh-text-s.weight-regular.rh-fg-stone-darkest.rh-text-align-left.rh-px-0_75.rh-py-0_25').css({
+                    'color': res.tableHeading.color,
+                    'font-size': `${res.tableHeading['font-size']}px`,
+                });
+
+                $('.rh-fg-blueberry-dark').attr('style', `color:${res.ratings.rateColor}`)
+                $('.gGua-Dl').css({
+                    'background-color': res.ratings['btnBackground'],
+                    'color': res.ratings.color
+                });
+
+            }).catch(er => console.log(er))
         }
     }
     
