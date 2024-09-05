@@ -2,6 +2,12 @@ body,html{
 	font-family: "DM Sans", "DM Sans Fallback";
  }
 
+:root {
+	--btn-color: #fac566;
+	--btn-text-color: #202859;
+	--rate-color: #2465f2;
+}
+
  #loader {
     position: fixed;
     left: 0;
@@ -52,7 +58,7 @@ body,html{
       transform: rotate(360deg);
     }
   }
-  
+
  .header-wrapper {
     text-align: center;
     color: #2465f2;
@@ -305,7 +311,7 @@ input, .flex-container button, #purchase-price input, #percentage input {
 	 color: #000;
 }
  .rh-fg-blueberry-dark {
-	 color: #2465f2;
+	 color: var(--rate-color);
 }
  .rh-bg-blueberry-dark {
 	 background-color: #366cf3;
@@ -619,12 +625,12 @@ input, .flex-container button, #purchase-price input, #percentage input {
 }
  .gGua-Dl {
 	 transition: border-color 300ms ease 0s, color 300ms ease 0s, background-color 300ms ease 0s;
-	 background: #fac566;
+	 background: var(--btn-color);
 	 font-family: "DM Sans", "DM Sans Fallback";
 	 border-width: 0;
 	 font-size: 13px;
 	 border-radius: 5px;
-	 color: #202859;
+	 color: var(--btn-text-color);
 	 font-weight: 800;
 	 letter-spacing: 0.5px;
 }
