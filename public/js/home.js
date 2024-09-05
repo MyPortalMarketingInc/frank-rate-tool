@@ -1398,6 +1398,8 @@ $(document).ready(async ()=> {
 
             }).catch(er => console.log(er))
         }
+
+        $('#loader').hide()
     }
     
     // Trigger the first load
