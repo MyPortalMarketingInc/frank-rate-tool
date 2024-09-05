@@ -1398,8 +1398,9 @@ $(document).ready(async ()=> {
 
             }).catch(er => console.log(er))
         }
-
-        $('#loader').hide()
+        setTimeout(() => {
+            $('#loader').hide()
+        }, 1000);
     }
     
     // Trigger the first load
